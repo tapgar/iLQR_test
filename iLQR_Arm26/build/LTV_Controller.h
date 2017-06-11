@@ -2,9 +2,9 @@
 #include <OpenSim/OpenSim.h>
 #include <vector>
 #include "Common_Structs.h"
+#include <Eigen/Dense>
 
 using namespace OpenSim;
-using namespace SimTK;
 using namespace std;
 
 class LTV_Controller : public Controller 
@@ -12,14 +12,15 @@ class LTV_Controller : public Controller
 	OpenSim_DECLARE_CONCRETE_OBJECT(LTV_Controller, Controller);
 
 public:
-	LTV_Controller(double sim_time, int time_steps) : Controller() {
+	LTV_Controller(Model* pModel, double sim_time, int time_steps) : Controller() {
 		m_dMaxSimTime_s = sim_time;
 		m_nTimeSteps = time_steps;
 		m_bFeedbackEnabled = true;
+		m_pModel = pModel;
 	};
 	~LTV_Controller() { };
 
-	void computeControls(const State& s, Vector &controls) const;
+	void computeControls(const SimTK::State& s, SimTK::Vector &controls) const;
 
 	void SetDesiredTrajectory(vector<Traj_Pt> traj_pts)
 	{
@@ -46,5 +47,7 @@ private:
 
 	vector<MatrixXd> m_K;
 	vector<VectorXd> m_k;
+
+	Model *m_pModel;
 };
 

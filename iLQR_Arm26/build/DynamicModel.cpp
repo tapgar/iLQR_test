@@ -16,8 +16,8 @@ void DynamicModel::GetGradient(Traj_Pt pt, double time_s, Matrix4d* fx, MatrixXd
 {
 	Matrix4d forwardA = Matrix4d::Zero();
 	Matrix4d backwardA = Matrix4d::Zero();
-	State forS;
-	State backS;
+	SimTK::State forS;
+	SimTK::State backS;
 	Vector4d forVec = Vector4d::Zero();
 	Vector4d backVec = Vector4d::Zero();
 
@@ -55,12 +55,12 @@ void DynamicModel::GetGradient(Traj_Pt pt, double time_s, Matrix4d* fx, MatrixXd
 
 		for (int j = 0; j < 4; j++)
 		{
-			(fx)[j][i] = (forVec[j] - backVec[j]) / 0.02;
+			(fu)[j][i] = (forVec[j] - backVec[j]) / 0.02;
 		}
 	}
 }
 
-void DynamicModel::RunForward(double time, State sp, Vector4d* vec)
+void DynamicModel::RunForward(double time, SimTK::State sp, Vector4d* vec)
 {
 	SimTK::RungeKuttaMersonIntegrator
 		integrator(m_Model.getMultibodySystem());
@@ -84,7 +84,7 @@ void DynamicModel::RunForward(double time, State sp, Vector4d* vec)
 	
 }
 
-void DynamicModel::ResetModelAtPoint(Traj_Pt pt, State* s)
+void DynamicModel::ResetModelAtPoint(Traj_Pt pt, SimTK::State* s)
 {
 	
 	m_Model.getStateValues(*s);

@@ -5,7 +5,6 @@
 #include "Common_Structs.h"
 
 using namespace OpenSim;
-using namespace SimTK;
 using namespace std;
 
 class DynamicModel
@@ -21,9 +20,9 @@ private:
 
 	Model m_Model;
 
-	void RunForward(double time, State sp, Vector4d* vec);
+	void RunForward(double time, SimTK::State sp, Vector4d* vec);
 
-	void ResetModelAtPoint(Traj_Pt pt, State* s);
+	void ResetModelAtPoint(Traj_Pt pt, SimTK::State* s);
 
 };
 
