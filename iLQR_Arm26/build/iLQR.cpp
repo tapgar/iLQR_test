@@ -1,16 +1,16 @@
 #include "iLQR.h"
 
 
-
 using namespace OpenSim;
 using namespace SimTK;
 using namespace std;
 
 
-iLQR::iLQR(Model* pModel)
+iLQR::iLQR(Model* pModel, double sim_time, int time_steps)
 {
 	m_pModel = pModel;
 	ResetModel();
+	m_pController = new LTV_Controller(sim_time, time_steps);
 }
 
 
@@ -18,7 +18,7 @@ iLQR::~iLQR()
 {
 }
 
-void iLQR::Run(Trajectory init_traj)
+void iLQR::Run(vector<Traj_Pt> init_traj, Traj_Pt target)
 {
 	static bool bConverged = false;
 
@@ -26,13 +26,12 @@ void iLQR::Run(Trajectory init_traj)
 	{
 		RunForward();
 		RunBackward();
-		ResetModel();
 	}
 }
 
 void iLQR::RunForward()
 {
-
+	
 }
 
 void iLQR::RunBackward()
@@ -57,4 +56,15 @@ void iLQR::ResetModel()
 
 	// Make sure the muscles states are in equilibrium
 	m_pModel->equilibrateMuscles(si);
+}
+
+void iLQR::RunModel(vector<Traj_Pt>* trajectory)
+{
+	ResetModel();
+
+	if (!m_pModel->isControlled())
+		m_pModel->addController(m_pController);
+
+
+
 }

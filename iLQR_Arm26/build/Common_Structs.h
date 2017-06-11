@@ -6,6 +6,7 @@ using namespace Eigen;
 using namespace std;
 
 typedef struct {
-	Vector4d x0;
-	vector<VectorXd> u;
-} Trajectory;
+	Vector4d x;
+	VectorXd u;
+} Traj_Pt;
+
