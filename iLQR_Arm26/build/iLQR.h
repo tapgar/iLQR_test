@@ -23,6 +23,9 @@ private:
 	Model *m_pModel; //main arm sim model
 	LTV_Controller *m_pController;
 
+	double m_dMaxSimTime_s;
+	int m_nTrajPts;
+
 	void RunForward();
 	void RunBackward();
 

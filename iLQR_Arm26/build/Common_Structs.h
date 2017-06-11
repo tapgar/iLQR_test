@@ -5,8 +5,13 @@
 using namespace Eigen;
 using namespace std;
 
-typedef struct {
+struct Traj_Pt {
 	Vector4d x;
 	VectorXd u;
-} Traj_Pt;
+	Traj_Pt()
+	{
+		x = Vector4d::Zero();
+		u = VectorXd::Zero(6);
+	}
+};
 
