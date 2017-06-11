@@ -38,15 +38,31 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 	Muscle* BICshort = dynamic_cast<Muscle*> (&getActuatorSet().get(4));
 	Muscle* BRA = dynamic_cast<Muscle*> (&getActuatorSet().get(5));
 
-	//initialize the starting shoulder angle
+	//get coordinate set for each joint from model
 	const CoordinateSet& coords = osimModel.getCoordinateSet();
-	coords.get("r_shoulder_elev").setValue(s, -1.57079633);
+	
+	//initialize the starting shoulder and elbow angles
+	//coords.get("r_shoulder_elev").setValue(s, -1.57079633);
+	//coords.get("r_elbow_flex").setValue(s,  );
 	
 	//get current state from s
-	shoulder_angle -> coords.get("r_shoulder_elev"); //rad 
-	elbow_angle -> coords.get("r_elbow_flex"); //rad
-
+	double shoulder_angle = coords.get("r_shoulder_elev").getValue(s); //rad
+	double shoulder_vel = coords.get("r_shoulder_elev").getSpeedValue(s); //rad per sec
+	double elbow_angle = coords.get("r_elbow_flex").getValue(s); //rad
+	double elbow_vel = coords.get("r_elbow_flex").getSpeedValue(s); //rad per sec
 	
+	//current state (joint angles and joint velocities) from s
+	Vector4d x[] = {shoulder_angle, shoulder_vel, elbow_angle, elbow_vel};
+
+	//number of controls will equal the number of muscles in the model
+	int numControls = osimModel.getNumControls();
+	
+	//calculate muscle activation and set value to each muscle
+	double u = u + k + K * (targ_pt - x);
+	const Set<Muscle> &muscleSet = osimModel.getMuscles();
+	for (int i=0; i < muscleSet.getSize(); i++) {
+		muscleSet[i].setActivation(s, u[i]);
+	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
