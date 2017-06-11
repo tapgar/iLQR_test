@@ -19,6 +19,7 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 	VectorXd k = m_k[nT];
 
 	Traj_Pt targ_pt = m_Trajectory[nT];
+	
 
 	//get current state from s
 	//calculate muscle activation

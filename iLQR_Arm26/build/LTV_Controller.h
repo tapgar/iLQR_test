@@ -15,6 +15,7 @@ public:
 	LTV_Controller(double sim_time, int time_steps) : Controller() {
 		m_dMaxSimTime_s = sim_time;
 		m_nTimeSteps = time_steps;
+		m_bFeedbackEnabled = true;
 	};
 	~LTV_Controller() { };
 
@@ -31,10 +32,15 @@ public:
 		m_k = k;
 	}
 
+	void DisableFeedback() { m_bFeedbackEnabled = false; }
+	void EnableFeedback() { m_bFeedbackEnabled = true; }
+
 private:
 
 	double m_dMaxSimTime_s;
 	int m_nTimeSteps;
+
+	bool m_bFeedbackEnabled;
 
 	vector<Traj_Pt> m_Trajectory;
 
