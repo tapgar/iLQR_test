@@ -1,0 +1,3 @@
+C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/iLQRTest.dir
+C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/ALL_BUILD.dir
+C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/ZERO_CHECK.dir
