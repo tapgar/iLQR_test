@@ -12,6 +12,9 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 	//initialize the system and get the state representing the state system
 	//State& s = osimModel.initSystem();
 	
+	//make a copy of out initial states
+	State s = si;
+	
 	// Get the current time in the simulation.
 	double t = s.getTime();
 
@@ -27,6 +30,7 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 
 	Traj_Pt targ_pt = m_Trajectory[nT];
 	
+	//get pointers to each of the muscles in the model
 	Muscle* TRIlong = dynamic_cast<Muscle*> (&getActuatorSet().get(0));
 	Muscle* TRIlat = dynamic_cast<Muscle*> (&getActuatorSet().get(1));
 	Muscle* TRImed = dynamic_cast<Muscle*> (&getActuatorSet().get(2));
@@ -34,8 +38,20 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 	Muscle* BICshort = dynamic_cast<Muscle*> (&getActuatorSet().get(4));
 	Muscle* BRA = dynamic_cast<Muscle*> (&getActuatorSet().get(5));
 
+	//initialize the starting shoulder angle
+	const CoordinateSet& coords = osimModel.getCoordinateSet();
+	coords.get("r_shoulder_elev").setValue(s, -1.57079633);
+	
 	//get current state from s
+	shoulder_angle -> coords.get("r_shoulder_elev"); //rad 
+	elbow_angle -> coords.get("r_elbow_flex"); //rad
+
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
 	//calculate muscle activation
+	//u = u_ff + Kt(x_t - x) + kt
 	const Set<Muscle>& muscleSet = osimModel.getMuscles();
 	
 	//define initial muscle states
@@ -49,23 +65,21 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 	//get activation level at current state from s
 	//for(int i=0; i < muscleSet.getSize(); i++) {
 	//	muscleSet[i].getActivation(s);
-	u_TRIlong -> muscleSet(0).getActivation(s);
-	u_TRIlat -> muscleSet(1).getActivation(s);
-	u_TRImed -> muscleSet(2).getActivation(s);
-	u_BIClong -> muscleSet(3).getActivation(s);
-	u_BICshort -> muscleSet(4).getActivation(s);
-	u_BRA -> muscleSet(5).getActivation(s);
+	//u_TRIlong -> muscleSet(0).getActivation(s);
+	//u_TRIlat -> muscleSet(1).getActivation(s);
+	//u_TRImed -> muscleSet(2).getActivation(s);
+	//u_BIClong -> muscleSet(3).getActivation(s);
+	//u_BICshort -> muscleSet(4).getActivation(s);
+	//u_BRA -> muscleSet(5).getActivation(s);
 	
 	//number of controls will equal the number of muscles in the model
 	int numControls = osimModel.getNumControls();
 	
 	//convert u to Vector controls object
-	double u[] = {u_TRIlong, u_TRIlat, u_TRImed, u_BIClong, u_BICshort, u_BRA};
-	Vector controls(numControls, u);
-	Vector lower_bounds(numControls, 0.01);
-	Vector upper_bounds(numControls, 0.99);
-	
-	//u = u_ff + Kt(x_t - x) + kt
-	
+	//double u[] = {u_TRIlong, u_TRIlat, u_TRImed, u_BIClong, u_BICshort, u_BRA};
+	//Vector controls(numControls, u);
+	//Vector lower_bounds(numControls, 0.01);
+	//Vector upper_bounds(numControls, 0.99);
+	*/
 	
 }
