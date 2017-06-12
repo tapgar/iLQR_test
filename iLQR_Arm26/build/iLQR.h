@@ -13,10 +13,12 @@ using namespace std;
 class iLQR
 {
 public:
+	//EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+
 	iLQR(Model *pModel, Vector4d targ_x, double sim_time, int time_steps);
 	~iLQR();
 
-	void Run(vector<Traj_Pt> init_traj, Traj_Pt target);
+	void Run();
 
 private:
 
@@ -40,14 +42,14 @@ private:
 	Vector4d target_x;
 
 	Matrix4d Qf;
-	MatrixXd R;
+	Matrix<double, 6, 6, DontAlign> R;
 
 	Vector4d lx;
-	VectorXd lu;
+	Matrix<double, 6, 1, DontAlign> lu;
 
 	Matrix4d lxx;
-	MatrixXd lux;
-	MatrixXd luu;
+	Matrix<double, 6, 4, DontAlign> lux;
+	Matrix<double, 6, 6, DontAlign> luu;
 
 	DynamicModel* m_pDynamics;
 

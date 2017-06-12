@@ -18,18 +18,25 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 
 	target_x = targ_x;
 
+	for (int i = 0; i < 4; i++)
+		Qf(i, i) = 10.0;
+
+	R = Matrix<double, 6, 6>::Zero();
+	for (int i = 0; i < 6; i++)
+		R(i, i) = 0.1;
+
 	lx = Vector4d::Zero();
 	lu = VectorXd::Zero(6);
 
 	lxx = Matrix4d::Zero();
-	luu = MatrixXd::Zero(6, 6);
-	lux = MatrixXd::Zero(6, 4);
+	luu = Matrix<double, 6, 6>::Zero();
+	lux = Matrix<double, 6, 4>::Zero();
 
 	for (int i = 0; i < time_steps; i++)
 	{
-		MatrixXd K = MatrixXd::Zero(6, 4);
+		Matrix<double, 6, 4> K = Matrix<double, 6, 4>::Zero();
 		m_K.push_back(K);
-		VectorXd k = VectorXd::Zero(6);
+		Matrix<double, 6, 1> k = Matrix<double, 6, 1>::Zero();
 		m_k.push_back(k);
 	}
 
@@ -41,7 +48,7 @@ iLQR::~iLQR()
 {
 }
 
-void iLQR::Run(vector<Traj_Pt> init_traj, Traj_Pt target)
+void iLQR::Run()
 {
 	static bool bConverged = false;
 
@@ -70,15 +77,15 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 {
 	int idx = m_nTrajPts - 1;
 
-	vector<VectorXd> m_Qu;
-	vector<MatrixXd> m_Quu;
-	vector<MatrixXd> m_Qux;
+	vector<Matrix<double, 6, 1>> m_Qu;
+	vector<Matrix<double, 6, 6>> m_Quu;
+	vector<Matrix<double, 6, 4>> m_Qux;
 	
-	VectorXd Qu = R*(open_traj[idx].u - closed_traj[idx].u);
-	MatrixXd Quu = R;
+	Matrix<double, 6, 1> Qu = R*(open_traj[idx].u - closed_traj[idx].u);
+	Matrix<double, 6, 6> Quu = R;
 	Vector4d Qx = Qf*(target_x - closed_traj[idx].x);
 	Matrix4d Qxx = Qf;
-	MatrixXd Qux = MatrixXd::Zero();
+	Matrix<double, 6, 4> Qux = Matrix<double, 6, 4>::Zero();
 
 	Vector4d Vx = Qx - m_K[idx].transpose()*Quu*m_k[idx];
 	Matrix4d Vxx = Qxx - m_K[idx].transpose()*Quu*m_K[idx];
@@ -89,21 +96,21 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 
 	for (int i = idx - 1; i >= 0; i--)
 	{
-		VectorXd u_bar = (open_traj[i].u - closed_traj[i].u);
+		Matrix<double, 6, 1> u_bar = (open_traj[i].u - closed_traj[i].u);
 		double l = u_bar.transpose()*R*u_bar;
 		lu = 2 * u_bar;
 		luu = R;
 		//no state based cost besides Qf so lx, lxu, and lxx are zero
 
 		Matrix4d A = Matrix4d::Zero();
-		MatrixXd B = MatrixXd::Zero(4, 6);
+		Matrix<double, 4, 6> B = Matrix<double, 4, 6>::Zero();
 
-		m_pDynamics->GetGradient(closed_traj[i], double(i) / 100.0, &A, &B);
+		m_pDynamics->GetGradient(closed_traj[i], double(i)*m_dMaxSimTime_s/double(m_nTrajPts), &A, &B);
 
 		Qx = lx + A.transpose()*Vx;
 		Qu = lu + B.transpose()*Vx;
 		Qxx = lxx + A.transpose()*Vxx*A;
-		Qux = lux + B.transpose()*Vxx*B;
+		Qux = lux + B.transpose()*Vxx*A;
 		Quu = luu + B.transpose()*Vxx*B;
 
 		Vx = Qx - m_K[idx].transpose()*Quu*m_k[idx];
@@ -113,12 +120,13 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 		m_Quu.push_back(Quu);
 		m_Qux.push_back(Qux);
 	}
-
+	
 	for (int i = 0; i < m_nTrajPts; i++)
 	{
-		Quu = m_Quu[i];
-		Qu = m_Qu[i];
-		Qux = m_Qux[i];
+		//these were pushed into the vector backwards
+		Quu = m_Quu[m_nTrajPts - 1 - i];
+		Qu = m_Qu[m_nTrajPts - 1 - i];
+		Qux = m_Qux[m_nTrajPts - 1 - i];
 
 		m_K[i] = -Quu.inverse()*Qux;
 		m_k[i] = -Quu.inverse()*Qu;
@@ -134,7 +142,7 @@ void iLQR::ResetModel()
 
 	// initialize the starting shoulder angle
 	const CoordinateSet& coords = m_pModel->getCoordinateSet();
-	coords.get("r_shoulder_elev").setValue(si, -1.57079633); //idk this was in some example
+	coords.get(coord_names[0]).setValue(si, -1.57079633); //idk this was in some example
 
 	// Set the initial muscle activations 
 	const Set<Muscle> &muscleSet = m_pModel->getMuscles();
@@ -170,9 +178,14 @@ void iLQR::RunModel(vector<Traj_Pt>* trajectory)
 	
 	manager.integrate(si);
 
-	Storage stateStorage = manager.getStateStorage();
+	for (int i = 0; i < m_nTrajPts; i++)
+	{
+		Traj_Pt pt;
+		double time_step = double(i)*m_dMaxSimTime_s / double(m_nTrajPts);
+		ProcessStateStorage(manager.getStateStorage(), time_step, &pt.x, &pt.u);
+		(*trajectory)[i] = pt;
+	}
 	
-	//put data into trajectory object (memory will be allocated in trajectory so you can just do trajectory[x] = Traj_Pt;
 }
 
 void iLQR::RunModelOpenLoop(vector<Traj_Pt>* trajectory)
@@ -199,7 +212,13 @@ void iLQR::RunModelOpenLoop(vector<Traj_Pt>* trajectory)
 
 	manager.integrate(si);
 
-	Storage stateStorage = manager.getStateStorage();
 
-	//put data into trajectory object (memory will be allocated in trajectory so you can just do trajectory[x] = Traj_Pt;
+	for (int i = 0; i < m_nTrajPts; i++)
+	{
+		Traj_Pt pt;
+		double time_step = double(i)*m_dMaxSimTime_s / double(m_nTrajPts);
+		ProcessStateStorage(manager.getStateStorage(), time_step, &pt.x, &pt.u);
+		(*trajectory)[i] = pt;
+	}
+
 }

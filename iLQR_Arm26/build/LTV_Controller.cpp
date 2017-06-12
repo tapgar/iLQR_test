@@ -25,17 +25,18 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 	
 	// initialize the starting shoulder angle
 	const CoordinateSet& coords = m_pModel->getCoordinateSet();
-	Vector4d curX;
+	Vector4d curX = Vector4d::Zero();
 	for (int i = 0; i < 2; i++)
 	{
-		curX[i] = coords.get(i).getValue(s);
-		curX[i + 2] = coords.get(i).getSpeedValue(s);
+		curX(i) = coords.get(coord_names[i]).getValue(s);
+		curX(i + 2) = coords.get(coord_names[i]).getSpeedValue(s);
 	}
 
-	VectorXd u = targ_pt.u + k;
+	VectorXd u = VectorXd::Zero(6);
+	u = targ_pt.u + k;
 	if (m_bFeedbackEnabled)
 		u += K*(targ_pt.x - curX);
 
 	for (int i = 0; i < 6; i++)
-		controls.set(i, u[i]);
+		controls.set(i, u(i));
 }

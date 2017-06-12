@@ -12,7 +12,7 @@ class DynamicModel
 public:
 	DynamicModel(Model *pModel);
 
-	void GetGradient(Traj_Pt pt, double time_s, Matrix4d* fx, MatrixXd* fu);
+	void GetGradient(Traj_Pt pt, double time_s, Matrix4d* fx, Matrix<double, 4, 6>* fu);
 
 	~DynamicModel();
 

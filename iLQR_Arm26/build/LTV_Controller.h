@@ -12,6 +12,8 @@ class LTV_Controller : public Controller
 	OpenSim_DECLARE_CONCRETE_OBJECT(LTV_Controller, Controller);
 
 public:
+	//EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+
 	LTV_Controller(Model* pModel, double sim_time, int time_steps) : Controller() {
 		m_dMaxSimTime_s = sim_time;
 		m_nTimeSteps = time_steps;
