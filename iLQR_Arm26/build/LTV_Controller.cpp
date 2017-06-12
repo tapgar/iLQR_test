@@ -32,7 +32,10 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 		curX[i + 2] = coords.get(i).getSpeedValue(s);
 	}
 
-	VectorXd u = targ_pt.u + K*(targ_pt.x - curX) + k;
+	VectorXd u = targ_pt.u + k;
+	if (m_bFeedbackEnabled)
+		u += K*(targ_pt.x - curX);
+
 	for (int i = 0; i < 6; i++)
 		controls.set(i, u[i]);
 }

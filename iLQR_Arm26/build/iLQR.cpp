@@ -106,8 +106,6 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 		Qux = lux + B.transpose()*Vxx*B;
 		Quu = luu + B.transpose()*Vxx*B;
 
-		
-
 		Vx = Qx - m_K[idx].transpose()*Quu*m_k[idx];
 		Vxx = Qxx - m_K[idx].transpose()*Quu*m_K[idx];
 
@@ -155,6 +153,8 @@ void iLQR::RunModel(vector<Traj_Pt>* trajectory)
 	if (!m_pModel->isControlled())
 		m_pModel->addController(m_pController);
 
+	m_pController->EnableFeedback();
+
 	SimTK::State si;
 	m_pModel->getStateValues(si);
 	// Create the integrator and manager for the simulation.
@@ -179,8 +179,10 @@ void iLQR::RunModelOpenLoop(vector<Traj_Pt>* trajectory)
 {
 	ResetModel();
 
-	if (m_pModel->isControlled())
-		m_pModel->removeController(m_pController);
+	if (!m_pModel->isControlled())
+		m_pModel->addController(m_pController);
+
+	m_pController->DisableFeedback();
 
 	SimTK::State si;
 	m_pModel->getStateValues(si);
