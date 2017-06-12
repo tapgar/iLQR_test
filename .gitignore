@@ -19,3 +19,6 @@
 *.sbr
 *.sdf
 *.sto
+*.obj
+*.log
+*.tlog
