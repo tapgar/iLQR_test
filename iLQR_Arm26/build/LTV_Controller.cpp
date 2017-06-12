@@ -5,11 +5,11 @@ using namespace OpenSim;
 using namespace Eigen;
 
 void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &controls) const
-{	
+{
 	// Get the current time in the simulation.
 	double t = s.getTime();
 
-	int nT = int(t*double(m_nTimeSteps)/ m_dMaxSimTime_s + 0.5);
+	int nT = int(t*double(m_nTimeSteps) / m_dMaxSimTime_s + 0.5);
 
 	if (nT >= m_nTimeSteps)
 		nT = m_nTimeSteps - 1;
@@ -21,8 +21,9 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 
 	Traj_Pt targ_pt = m_Trajectory[nT];
 
-	m_pModel->getStateValues(s);
-	
+
+	//m_pModel->setStateValues(s);
+
 	// initialize the starting shoulder angle
 	const CoordinateSet& coords = m_pModel->getCoordinateSet();
 	Vector4d curX = Vector4d::Zero();

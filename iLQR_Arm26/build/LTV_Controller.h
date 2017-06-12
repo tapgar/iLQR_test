@@ -7,7 +7,7 @@
 using namespace OpenSim;
 using namespace std;
 
-class LTV_Controller : public Controller 
+class LTV_Controller : public Controller
 {
 	OpenSim_DECLARE_CONCRETE_OBJECT(LTV_Controller, Controller);
 

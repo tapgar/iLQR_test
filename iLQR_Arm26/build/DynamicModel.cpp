@@ -4,7 +4,7 @@
 
 DynamicModel::DynamicModel(Model* pModel)
 {
-	m_Model = (*pModel);
+	m_pModel = pModel;
 }
 
 
@@ -36,7 +36,7 @@ void DynamicModel::GetGradient(Traj_Pt pt, double time_s, Matrix4d* fx, Matrix<d
 
 		for (int j = 0; j < 4; j++)
 		{
-			(*fx)(j,i) = (forVec(j) - backVec(j)) / 0.02;
+			(*fx)(j, i) = (forVec(j) - backVec(j)) / 0.02;
 		}
 	}
 
@@ -55,7 +55,7 @@ void DynamicModel::GetGradient(Traj_Pt pt, double time_s, Matrix4d* fx, Matrix<d
 
 		for (int j = 0; j < 4; j++)
 		{
-			(*fu)(j,i) = (forVec(j) - backVec(j)) / 0.02;
+			(*fu)(j, i) = (forVec(j) - backVec(j)) / 0.02;
 		}
 	}
 }
@@ -63,10 +63,10 @@ void DynamicModel::GetGradient(Traj_Pt pt, double time_s, Matrix4d* fx, Matrix<d
 void DynamicModel::RunForward(double time, SimTK::State sp, Vector4d* vec)
 {
 	SimTK::RungeKuttaMersonIntegrator
-		integrator(m_Model.getMultibodySystem());
+		integrator(m_pModel->getMultibodySystem());
 	integrator.setAccuracy(1.0e-4);
 
-	Manager manager(m_Model, integrator);
+	Manager manager((*m_pModel), integrator);
 
 	// Integrate from initial time to final time.
 	manager.setInitialTime(time);
@@ -75,18 +75,18 @@ void DynamicModel::RunForward(double time, SimTK::State sp, Vector4d* vec)
 	sp.setTime(time);
 
 	manager.integrate(sp);
-	
+
 	VectorXd controls = VectorXd::Zero(6);
-	ProcessStateStorage(manager.getStateStorage(), time, vec, &controls);
-	
+	ProcessStateStorage(manager.getStateStorage(), time + 0.005, vec, &controls);
+
 }
 
 void DynamicModel::ResetModelAtPoint(Traj_Pt pt, SimTK::State* s)
 {
-	
-	m_Model.getStateValues(*s);
+	(*s) = m_pModel->initializeState();
+	//m_pModel->getStateValues(*s);
 	// initialize the starting shoulder angle
-	const CoordinateSet& coords = m_Model.getCoordinateSet();
+	const CoordinateSet& coords = m_pModel->getCoordinateSet();
 	for (int i = 0; i < 2; i++)
 	{
 		coords.get(coord_names[i]).setValue(*s, pt.x(i));
@@ -94,11 +94,11 @@ void DynamicModel::ResetModelAtPoint(Traj_Pt pt, SimTK::State* s)
 	}
 
 	// Set the initial muscle activations 
-	const Set<Muscle> &muscleSet = m_Model.getMuscles();
+	const Set<Muscle> &muscleSet = m_pModel->getMuscles();
 	for (int i = 0; i< muscleSet.getSize(); i++) {
 		muscleSet[i].setActivation(*s, pt.u(i));
 	}
 
 	// Make sure the muscles states are in equilibrium
-	m_Model.equilibrateMuscles(*s);
+	// m_pModel->equilibrateMuscles(*s);
 }

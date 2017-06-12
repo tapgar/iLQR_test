@@ -18,7 +18,7 @@ public:
 
 private:
 
-	Model m_Model;
+	Model* m_pModel;
 
 	void RunForward(double time, SimTK::State sp, Vector4d* vec);
 

@@ -53,5 +53,7 @@ private:
 
 	DynamicModel* m_pDynamics;
 
+	int m_nNumIters;
+
 };
 

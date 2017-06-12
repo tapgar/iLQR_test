@@ -12,6 +12,7 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 	m_pController = new LTV_Controller(pModel, sim_time, time_steps);
 
 	m_pController->setActuators(m_pModel->updActuators());
+	m_pModel->addController(m_pController);
 
 	m_dMaxSimTime_s = sim_time;
 	m_nTrajPts = time_steps;
@@ -23,7 +24,7 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 
 	R = Matrix<double, 6, 6>::Zero();
 	for (int i = 0; i < 6; i++)
-		R(i, i) = 0.1;
+		R(i, i) = 0.20;
 
 	lx = Vector4d::Zero();
 	lu = VectorXd::Zero(6);
@@ -40,7 +41,10 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 		m_k.push_back(k);
 	}
 
+	m_pController->SetControllerGains(m_K, m_k);
+
 	m_pDynamics = new DynamicModel(pModel);
+	m_nNumIters = 0;
 }
 
 
@@ -52,22 +56,44 @@ void iLQR::Run()
 {
 	static bool bConverged = false;
 
+	vector<Traj_Pt> closed_traj, open_traj;
+	Traj_Pt null_pt;
+	for (int i = 0; i < m_nTrajPts; i++)
+	{
+		closed_traj.push_back(null_pt);
+		open_traj.push_back(null_pt);
+	}
+
 	while (!bConverged)
 	{
-		vector<Traj_Pt> closed_traj, open_traj;
-		Traj_Pt null_pt;
+
+		RunForward(&closed_traj, &open_traj);
+		/*		for (int i = 0; i < m_nTrajPts; i++)
+		{
+		cout << open_traj[i].x << endl;
+		cout << endl;
+		cout << open_traj[i].u << endl;
+		cout << endl;
+		}
 		for (int i = 0; i < m_nTrajPts; i++)
 		{
-			closed_traj.push_back(null_pt);
-			open_traj.push_back(null_pt);
+		cout << closed_traj[i].x << endl;
+		cout << endl;
+		cout << closed_traj[i].u << endl;
+		cout << endl;
 		}
-		RunForward(&closed_traj, &open_traj);
+		*/
 		RunBackward(closed_traj, open_traj);
+
+		if (m_nNumIters++ > 99)
+			bConverged = true;
+
 	}
 }
 
 void iLQR::RunForward(vector<Traj_Pt>* closed_traj, vector<Traj_Pt>* open_traj)
 {
+	m_pController->SetDesiredTrajectory((*closed_traj));
 	RunModelOpenLoop(open_traj);
 	m_pController->SetDesiredTrajectory((*open_traj));
 	RunModel(closed_traj);
@@ -80,8 +106,8 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 	vector<Matrix<double, 6, 1>> m_Qu;
 	vector<Matrix<double, 6, 6>> m_Quu;
 	vector<Matrix<double, 6, 4>> m_Qux;
-	
-	Matrix<double, 6, 1> Qu = R*(open_traj[idx].u - closed_traj[idx].u);
+
+	Matrix<double, 6, 1> Qu = -R*(open_traj[idx].u - closed_traj[idx].u);
 	Matrix<double, 6, 6> Quu = R;
 	Vector4d Qx = Qf*(target_x - closed_traj[idx].x);
 	Matrix4d Qxx = Qf;
@@ -96,16 +122,19 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 
 	for (int i = idx - 1; i >= 0; i--)
 	{
-		Matrix<double, 6, 1> u_bar = (open_traj[i].u - closed_traj[i].u);
+		Matrix<double, 6, 1> u_bar = -(open_traj[i].u - closed_traj[i].u);
 		double l = u_bar.transpose()*R*u_bar;
 		lu = 2 * u_bar;
 		luu = R;
 		//no state based cost besides Qf so lx, lxu, and lxx are zero
 
+		//cout << lu << endl; cin.get();
+		//cout << luu << endl; cin.get();
+
 		Matrix4d A = Matrix4d::Zero();
 		Matrix<double, 4, 6> B = Matrix<double, 4, 6>::Zero();
 
-		m_pDynamics->GetGradient(closed_traj[i], double(i)*m_dMaxSimTime_s/double(m_nTrajPts), &A, &B);
+		m_pDynamics->GetGradient(closed_traj[i], double(i)*m_dMaxSimTime_s / double(m_nTrajPts), &A, &B);
 
 		Qx = lx + A.transpose()*Vx;
 		Qu = lu + B.transpose()*Vx;
@@ -120,7 +149,7 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 		m_Quu.push_back(Quu);
 		m_Qux.push_back(Qux);
 	}
-	
+
 	for (int i = 0; i < m_nTrajPts; i++)
 	{
 		//these were pushed into the vector backwards
@@ -128,11 +157,17 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 		Qu = m_Qu[m_nTrajPts - 1 - i];
 		Qux = m_Qux[m_nTrajPts - 1 - i];
 
+		//cout << "Gains: " << i << endl;
+
 		m_K[i] = -Quu.inverse()*Qux;
+		cout << m_K[i] << endl;
 		m_k[i] = -Quu.inverse()*Qu;
+		cout << m_k[i] << endl;
 	}
 
-//	m_pController->SetControllerGains(K, k);
+	//cin.get();
+
+	m_pController->SetControllerGains(m_K, m_k);
 }
 
 void iLQR::ResetModel()
@@ -142,9 +177,10 @@ void iLQR::ResetModel()
 
 	// initialize the starting shoulder angle
 	const CoordinateSet& coords = m_pModel->getCoordinateSet();
-	coords.get(coord_names[0]).setValue(si, -1.57079633); //idk this was in some example
+	coords.get(coord_names[0]).setValue(si, 0.0); //idk this was in some example
+	coords.get(coord_names[1]).setValue(si, 0.785375); //idk this was in some example
 
-	// Set the initial muscle activations 
+													   // Set the initial muscle activations 
 	const Set<Muscle> &muscleSet = m_pModel->getMuscles();
 	for (int i = 0; i< muscleSet.getSize(); i++) {
 		muscleSet[i].setActivation(si, 0.01);
@@ -158,24 +194,39 @@ void iLQR::RunModel(vector<Traj_Pt>* trajectory)
 {
 	ResetModel();
 
-	if (!m_pModel->isControlled())
-		m_pModel->addController(m_pController);
+	//	if (!m_pModel->isControlled())
+	//		m_pModel->addController(m_pController);
 
 	m_pController->EnableFeedback();
 
-	SimTK::State si;
+	SimTK::State& si = m_pModel->initializeState();
 	m_pModel->getStateValues(si);
+
+	// initialize the starting shoulder angle
+	const CoordinateSet& coords = m_pModel->getCoordinateSet();
+	coords.get(coord_names[0]).setValue(si, 0.0); //idk this was in some example
+	coords.get(coord_names[1]).setValue(si, 0.785375); //idk this was in some example
+
+													   // Set the initial muscle activations 
+	const Set<Muscle> &muscleSet = m_pModel->getMuscles();
+	for (int i = 0; i< muscleSet.getSize(); i++) {
+		muscleSet[i].setActivation(si, 0.01);
+	}
+
+	// Make sure the muscles states are in equilibrium
+	m_pModel->equilibrateMuscles(si);
+
 	// Create the integrator and manager for the simulation.
 	SimTK::RungeKuttaMersonIntegrator
 		integrator(m_pModel->getMultibodySystem());
-	integrator.setAccuracy(1.0e-4);
+	integrator.setAccuracy(1.0e-2);
 
 	Manager manager(*m_pModel, integrator);
 
 	// Integrate from initial time to final time.
 	manager.setInitialTime(0.0);
 	manager.setFinalTime(m_dMaxSimTime_s);
-	
+
 	manager.integrate(si);
 
 	for (int i = 0; i < m_nTrajPts; i++)
@@ -185,24 +236,41 @@ void iLQR::RunModel(vector<Traj_Pt>* trajectory)
 		ProcessStateStorage(manager.getStateStorage(), time_step, &pt.x, &pt.u);
 		(*trajectory)[i] = pt;
 	}
-	
+	char buff[50];
+	sprintf(buff, "Arm26_closed_%d.sto", m_nNumIters);
+	manager.getStateStorage().print(buff);
 }
 
 void iLQR::RunModelOpenLoop(vector<Traj_Pt>* trajectory)
 {
 	ResetModel();
 
-	if (!m_pModel->isControlled())
-		m_pModel->addController(m_pController);
+	//	if (!m_pModel->isControlled())
+	//		m_pModel->addController(m_pController);
 
 	m_pController->DisableFeedback();
 
-	SimTK::State si;
+	SimTK::State& si = m_pModel->initializeState();
 	m_pModel->getStateValues(si);
+
+	// initialize the starting shoulder angle
+	const CoordinateSet& coords = m_pModel->getCoordinateSet();
+	coords.get(coord_names[0]).setValue(si, 0.0); //idk this was in some example
+	coords.get(coord_names[1]).setValue(si, 0.785375); //idk this was in some example
+
+													   // Set the initial muscle activations 
+	const Set<Muscle> &muscleSet = m_pModel->getMuscles();
+	for (int i = 0; i< muscleSet.getSize(); i++) {
+		muscleSet[i].setActivation(si, 0.01);
+	}
+
+	// Make sure the muscles states are in equilibrium
+	m_pModel->equilibrateMuscles(si);
+
 	// Create the integrator and manager for the simulation.
 	SimTK::RungeKuttaMersonIntegrator
 		integrator(m_pModel->getMultibodySystem());
-	integrator.setAccuracy(1.0e-4);
+	integrator.setAccuracy(1.0e-2);
 
 	Manager manager(*m_pModel, integrator);
 
@@ -212,13 +280,15 @@ void iLQR::RunModelOpenLoop(vector<Traj_Pt>* trajectory)
 
 	manager.integrate(si);
 
-
 	for (int i = 0; i < m_nTrajPts; i++)
 	{
 		Traj_Pt pt;
-		double time_step = double(i)*m_dMaxSimTime_s / double(m_nTrajPts);
+		double time_step = (double(i) + 0.5)*m_dMaxSimTime_s / double(m_nTrajPts);
 		ProcessStateStorage(manager.getStateStorage(), time_step, &pt.x, &pt.u);
 		(*trajectory)[i] = pt;
 	}
-
+	char buff[50];
+	sprintf(buff, "Arm26_open_%d.sto", m_nNumIters);
+	manager.getStateStorage().print(buff);
+	//manager.getStateStorage().print("Arm26_states.sto");
 }

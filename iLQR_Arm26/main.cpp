@@ -1,9 +1,11 @@
 #include <OpenSim/OpenSim.h>
 #include <ctime>  // clock(), clock_t, CLOCKS_PER_SEC
+#include "iLQR.h"
+#include "Common_Structs.h"
 
-
+using namespace Eigen;
 using namespace OpenSim;
-using namespace SimTK;
+//using namespace SimTK;
 using namespace std;
 
 int main()
@@ -15,29 +17,12 @@ int main()
 		// Similar to arm26 model but without wrapping surfaces for better performance
 		Model osimModel("Arm26_Optimize.osim");
 
-		// Initialize the system and get the state representing the state system
-		State& si = osimModel.initSystem();
+		Vector4d targ_x = Vector4d::Zero();
+		targ_x(0) = 1.116;
+		targ_x(1) = 1.57;
 
-		// initialize the starting shoulder angle
-		const CoordinateSet& coords = osimModel.getCoordinateSet();
-		coords.get("r_shoulder_elev").setValue(si, -1.57079633);
-
-		// Set the initial muscle activations 
-		const Set<Muscle> &muscleSet = osimModel.getMuscles();
-		for (int i = 0; i< muscleSet.getSize(); i++) {
-			muscleSet[i].setActivation(si, 0.01);
-		}
-
-		// Make sure the muscles states are in equilibrium
-		osimModel.equilibrateMuscles(si);
-
-		// The number of controls will equal the number of muscles in the model!
-		int numControls = osimModel.getNumControls();
-		int numStates = osimModel.getNumJoints();
-		double speed = coords.get("r_shoulder_elev").getSpeedValue(si);
-
-		cout << "Num States: " << numStates << " | Num Controls: " << numControls << " | Shoulder Speed: " << speed << std::endl;
-		
+		iLQR traj_opt = iLQR(&osimModel, targ_x, 0.5, 50);
+		traj_opt.Run();
 
 		cout << "OpenSim example completed successfully.\n";
 
