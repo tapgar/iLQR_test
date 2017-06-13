@@ -9,8 +9,8 @@ The output was:
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 6/4/2017 1:37:03 AM.
-Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\3.8.2\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
+Build started 6/10/2017 7:55:38 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\3.9.0-rc2\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
   Creating directory "Debug\CompilerIdC.tlog\".
@@ -21,7 +21,7 @@ ClCompile:
   CMakeCCompilerId.c
 Link:
   C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X64 Debug\CMakeCCompilerId.obj
-  CompilerIdC.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\3.8.2\CompilerIdC\.\CompilerIdC.exe
+  CompilerIdC.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\3.9.0-rc2\CompilerIdC\.\CompilerIdC.exe
 PostBuildEvent:
   for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
   :VCEnd
@@ -29,20 +29,20 @@ PostBuildEvent:
 FinalizeBuildStatus:
   Deleting file "Debug\CompilerIdC.tlog\unsuccessfulbuild".
   Touching "Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate".
-Done Building Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\3.8.2\CompilerIdC\CompilerIdC.vcxproj" (default targets).
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\3.9.0-rc2\CompilerIdC\CompilerIdC.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.75
+Time Elapsed 00:00:01.44
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
 
-The C compiler identification is MSVC, found in "C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/3.8.2/CompilerIdC/CompilerIdC.exe"
+The C compiler identification is MSVC, found in "C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/3.9.0-rc2/CompilerIdC/CompilerIdC.exe"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler:  
@@ -54,8 +54,8 @@ The output was:
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 6/4/2017 1:37:04 AM.
-Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\3.8.2\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
+Build started 6/10/2017 7:55:40 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\3.9.0-rc2\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
   Creating directory "Debug\CompilerIdCXX.tlog\".
@@ -66,7 +66,7 @@ ClCompile:
   CMakeCXXCompilerId.cpp
 Link:
   C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X64 Debug\CMakeCXXCompilerId.obj
-  CompilerIdCXX.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\3.8.2\CompilerIdCXX\.\CompilerIdCXX.exe
+  CompilerIdCXX.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\3.9.0-rc2\CompilerIdCXX\.\CompilerIdCXX.exe
 PostBuildEvent:
   for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
   :VCEnd
@@ -74,211 +74,496 @@ PostBuildEvent:
 FinalizeBuildStatus:
   Deleting file "Debug\CompilerIdCXX.tlog\unsuccessfulbuild".
   Touching "Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate".
-Done Building Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\3.8.2\CompilerIdCXX\CompilerIdCXX.vcxproj" (default targets).
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\3.9.0-rc2\CompilerIdCXX\CompilerIdCXX.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.75
+Time Elapsed 00:00:01.40
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
 
-The CXX compiler identification is MSVC, found in "C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/3.8.2/CompilerIdCXX/CompilerIdCXX.exe"
+The CXX compiler identification is MSVC, found in "C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/3.9.0-rc2/CompilerIdCXX/CompilerIdCXX.exe"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_30c6e.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_37683.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 6/4/2017 1:37:05 AM.
-Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_30c6e.vcxproj" on node 1 (default targets).
+Build started 6/10/2017 7:55:41 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_37683.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_30c6e.dir\Debug\".
-  Creating directory "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_30c6e.dir\Debug\cmTC_30c6e.tlog\".
+  Creating directory "cmTC_37683.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_37683.dir\Debug\cmTC_37683.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_30c6e.dir\Debug\cmTC_30c6e.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_37683.dir\Debug\cmTC_37683.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_30c6e.dir\Debug\\" /Fd"cmTC_30c6e.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_37683.dir\Debug\\" /Fd"cmTC_37683.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCCompiler.c"
   Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_30c6e.dir\Debug\\" /Fd"cmTC_30c6e.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_37683.dir\Debug\\" /Fd"cmTC_37683.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCCompiler.c"
   
   testCCompiler.c
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_30c6e.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_30c6e.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_30c6e.lib" /MACHINE:X64   /machine:x64 cmTC_30c6e.dir\Debug\testCCompiler.obj
-  cmTC_30c6e.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_30c6e.exe
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_37683.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_37683.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_37683.lib" /MACHINE:X64  /machine:x64 cmTC_37683.dir\Debug\testCCompiler.obj
+  cmTC_37683.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_37683.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_30c6e.dir\Debug\cmTC_30c6e.tlog\unsuccessfulbuild".
-  Touching "cmTC_30c6e.dir\Debug\cmTC_30c6e.tlog\cmTC_30c6e.lastbuildstate".
-Done Building Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_30c6e.vcxproj" (default targets).
+  Deleting file "cmTC_37683.dir\Debug\cmTC_37683.tlog\unsuccessfulbuild".
+  Touching "cmTC_37683.dir\Debug\cmTC_37683.tlog\cmTC_37683.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_37683.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.04
+Time Elapsed 00:00:01.58
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_285bb.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_164fb.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 6/4/2017 1:37:06 AM.
-Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_285bb.vcxproj" on node 1 (default targets).
+Build started 6/10/2017 7:55:43 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_164fb.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_285bb.dir\Debug\".
-  Creating directory "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_285bb.dir\Debug\cmTC_285bb.tlog\".
+  Creating directory "cmTC_164fb.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_164fb.dir\Debug\cmTC_164fb.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_285bb.dir\Debug\cmTC_285bb.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_164fb.dir\Debug\cmTC_164fb.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_285bb.dir\Debug\\" /Fd"cmTC_285bb.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.8\Modules\CMakeCCompilerABI.c"
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_164fb.dir\Debug\\" /Fd"cmTC_164fb.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCCompilerABI.c"
   Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_285bb.dir\Debug\\" /Fd"cmTC_285bb.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.8\Modules\CMakeCCompilerABI.c"
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_164fb.dir\Debug\\" /Fd"cmTC_164fb.dir\Debug\vc140.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCCompilerABI.c"
   
   CMakeCCompilerABI.c
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_285bb.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_285bb.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_285bb.lib" /MACHINE:X64   /machine:x64 cmTC_285bb.dir\Debug\CMakeCCompilerABI.obj
-  cmTC_285bb.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_285bb.exe
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_164fb.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_164fb.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_164fb.lib" /MACHINE:X64  /machine:x64 cmTC_164fb.dir\Debug\CMakeCCompilerABI.obj
+  cmTC_164fb.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_164fb.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_285bb.dir\Debug\cmTC_285bb.tlog\unsuccessfulbuild".
-  Touching "cmTC_285bb.dir\Debug\cmTC_285bb.tlog\cmTC_285bb.lastbuildstate".
-Done Building Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_285bb.vcxproj" (default targets).
+  Deleting file "cmTC_164fb.dir\Debug\cmTC_164fb.tlog\unsuccessfulbuild".
+  Touching "cmTC_164fb.dir\Debug\cmTC_164fb.tlog\cmTC_164fb.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_164fb.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.84
+Time Elapsed 00:00:01.47
 
 
 Determining if the CXX compiler works passed with the following output:
-Change Dir: C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_e0399.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_f32f7.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 6/4/2017 1:37:07 AM.
-Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_e0399.vcxproj" on node 1 (default targets).
+Build started 6/10/2017 7:55:45 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_f32f7.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_e0399.dir\Debug\".
-  Creating directory "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_e0399.dir\Debug\cmTC_e0399.tlog\".
+  Creating directory "cmTC_f32f7.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_f32f7.dir\Debug\cmTC_f32f7.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_e0399.dir\Debug\cmTC_e0399.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_f32f7.dir\Debug\cmTC_f32f7.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_e0399.dir\Debug\\" /Fd"cmTC_e0399.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f32f7.dir\Debug\\" /Fd"cmTC_f32f7.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
   Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_e0399.dir\Debug\\" /Fd"cmTC_e0399.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f32f7.dir\Debug\\" /Fd"cmTC_f32f7.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
   
   testCXXCompiler.cxx
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_e0399.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_e0399.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_e0399.lib" /MACHINE:X64   /machine:x64 cmTC_e0399.dir\Debug\testCXXCompiler.obj
-  cmTC_e0399.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_e0399.exe
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_f32f7.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_f32f7.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_f32f7.lib" /MACHINE:X64  /machine:x64 cmTC_f32f7.dir\Debug\testCXXCompiler.obj
+  cmTC_f32f7.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_f32f7.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_e0399.dir\Debug\cmTC_e0399.tlog\unsuccessfulbuild".
-  Touching "cmTC_e0399.dir\Debug\cmTC_e0399.tlog\cmTC_e0399.lastbuildstate".
-Done Building Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_e0399.vcxproj" (default targets).
+  Deleting file "cmTC_f32f7.dir\Debug\cmTC_f32f7.tlog\unsuccessfulbuild".
+  Touching "cmTC_f32f7.dir\Debug\cmTC_f32f7.tlog\cmTC_f32f7.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_f32f7.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.80
+Time Elapsed 00:00:01.31
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_0758c.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_11148.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 6/4/2017 1:37:08 AM.
-Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_0758c.vcxproj" on node 1 (default targets).
+Build started 6/10/2017 7:55:47 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_11148.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_0758c.dir\Debug\".
-  Creating directory "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_0758c.dir\Debug\cmTC_0758c.tlog\".
+  Creating directory "cmTC_11148.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_11148.dir\Debug\cmTC_11148.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_0758c.dir\Debug\cmTC_0758c.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_11148.dir\Debug\cmTC_11148.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0758c.dir\Debug\\" /Fd"cmTC_0758c.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.8\Modules\CMakeCXXCompilerABI.cpp"
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_11148.dir\Debug\\" /Fd"cmTC_11148.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCXXCompilerABI.cpp"
   Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0758c.dir\Debug\\" /Fd"cmTC_0758c.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.8\Modules\CMakeCXXCompilerABI.cpp"
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_11148.dir\Debug\\" /Fd"cmTC_11148.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCXXCompilerABI.cpp"
   
   CMakeCXXCompilerABI.cpp
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_0758c.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_0758c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_0758c.lib" /MACHINE:X64   /machine:x64 cmTC_0758c.dir\Debug\CMakeCXXCompilerABI.obj
-  cmTC_0758c.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_0758c.exe
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_11148.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_11148.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_11148.lib" /MACHINE:X64  /machine:x64 cmTC_11148.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTC_11148.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_11148.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_0758c.dir\Debug\cmTC_0758c.tlog\unsuccessfulbuild".
-  Touching "cmTC_0758c.dir\Debug\cmTC_0758c.tlog\cmTC_0758c.lastbuildstate".
-Done Building Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_0758c.vcxproj" (default targets).
+  Deleting file "cmTC_11148.dir\Debug\cmTC_11148.tlog\unsuccessfulbuild".
+  Touching "cmTC_11148.dir\Debug\cmTC_11148.tlog\cmTC_11148.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_11148.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.77
+Time Elapsed 00:00:01.49
 
 
 
 
 Detecting CXX [] compiler features compiled with the following output:
-Change Dir: C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_9b6da.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_5b064.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 6/4/2017 1:37:09 AM.
-Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_9b6da.vcxproj" on node 1 (default targets).
+Build started 6/10/2017 7:55:49 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_5b064.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_9b6da.dir\Debug\".
-  Creating directory "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_9b6da.dir\Debug\cmTC_9b6da.tlog\".
+  Creating directory "cmTC_5b064.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_5b064.dir\Debug\cmTC_5b064.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_9b6da.dir\Debug\cmTC_9b6da.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_5b064.dir\Debug\cmTC_5b064.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9b6da.dir\Debug\\" /Fd"cmTC_9b6da.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_5b064.dir\Debug\\" /Fd"cmTC_5b064.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
   Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9b6da.dir\Debug\\" /Fd"cmTC_9b6da.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_5b064.dir\Debug\\" /Fd"cmTC_5b064.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
   
   feature_tests.cxx
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_9b6da.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_9b6da.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_9b6da.lib" /MACHINE:X64   /machine:x64 cmTC_9b6da.dir\Debug\feature_tests.obj
-  cmTC_9b6da.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_9b6da.exe
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_5b064.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_5b064.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_5b064.lib" /MACHINE:X64  /machine:x64 cmTC_5b064.dir\Debug\feature_tests.obj
+  cmTC_5b064.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_5b064.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_9b6da.dir\Debug\cmTC_9b6da.tlog\unsuccessfulbuild".
-  Touching "cmTC_9b6da.dir\Debug\cmTC_9b6da.tlog\cmTC_9b6da.lastbuildstate".
-Done Building Project "C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_9b6da.vcxproj" (default targets).
+  Deleting file "cmTC_5b064.dir\Debug\cmTC_5b064.tlog\unsuccessfulbuild".
+  Touching "cmTC_5b064.dir\Debug\cmTC_5b064.tlog\cmTC_5b064.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_5b064.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.75
+Time Elapsed 00:00:01.30
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [] compiler features compiled with the following output:
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_275d0.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) Build Engine version 14.0.25420.1
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Build started 6/10/2017 7:55:51 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_275d0.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "cmTC_275d0.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_275d0.dir\Debug\cmTC_275d0.tlog\".
+InitializeBuildStatus:
+  Creating "cmTC_275d0.dir\Debug\cmTC_275d0.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_275d0.dir\Debug\\" /Fd"cmTC_275d0.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_275d0.dir\Debug\\" /Fd"cmTC_275d0.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  
+  feature_tests.cxx
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_275d0.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_275d0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_275d0.lib" /MACHINE:X64  /machine:x64 cmTC_275d0.dir\Debug\feature_tests.obj
+  cmTC_275d0.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_275d0.exe
+FinalizeBuildStatus:
+  Deleting file "cmTC_275d0.dir\Debug\cmTC_275d0.tlog\unsuccessfulbuild".
+  Touching "cmTC_275d0.dir\Debug\cmTC_275d0.tlog\cmTC_275d0.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_275d0.vcxproj" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.47
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [] compiler features compiled with the following output:
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_9a091.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) Build Engine version 14.0.25420.1
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Build started 6/10/2017 7:55:53 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_9a091.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "cmTC_9a091.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_9a091.dir\Debug\cmTC_9a091.tlog\".
+InitializeBuildStatus:
+  Creating "cmTC_9a091.dir\Debug\cmTC_9a091.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9a091.dir\Debug\\" /Fd"cmTC_9a091.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9a091.dir\Debug\\" /Fd"cmTC_9a091.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  
+  feature_tests.cxx
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_9a091.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_9a091.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_9a091.lib" /MACHINE:X64  /machine:x64 cmTC_9a091.dir\Debug\feature_tests.obj
+  cmTC_9a091.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_9a091.exe
+FinalizeBuildStatus:
+  Deleting file "cmTC_9a091.dir\Debug\cmTC_9a091.tlog\unsuccessfulbuild".
+  Touching "cmTC_9a091.dir\Debug\cmTC_9a091.tlog\cmTC_9a091.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_9a091.vcxproj" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.36
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [] compiler features compiled with the following output:
+Change Dir: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_ba7a9.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) Build Engine version 14.0.25420.1
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Build started 6/10/2017 7:55:56 PM.
+Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_ba7a9.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "cmTC_ba7a9.dir\Debug\".
+  Creating directory "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_ba7a9.dir\Debug\cmTC_ba7a9.tlog\".
+InitializeBuildStatus:
+  Creating "cmTC_ba7a9.dir\Debug\cmTC_ba7a9.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_ba7a9.dir\Debug\\" /Fd"cmTC_ba7a9.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_ba7a9.dir\Debug\\" /Fd"cmTC_ba7a9.dir\Debug\vc140.pdb" /Gd /TP /errorReport:queue "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\feature_tests.cxx"
+  
+  feature_tests.cxx
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_ba7a9.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_ba7a9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/CMakeTmp/Debug/cmTC_ba7a9.lib" /MACHINE:X64  /machine:x64 cmTC_ba7a9.dir\Debug\feature_tests.obj
+  cmTC_ba7a9.vcxproj -> C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\Debug\cmTC_ba7a9.exe
+FinalizeBuildStatus:
+  Deleting file "cmTC_ba7a9.dir\Debug\cmTC_ba7a9.tlog\unsuccessfulbuild".
+  Touching "cmTC_ba7a9.dir\Debug\cmTC_ba7a9.tlog\cmTC_ba7a9.lastbuildstate".
+Done Building Project "C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\CMakeFiles\CMakeTmp\cmTC_ba7a9.vcxproj" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.42
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

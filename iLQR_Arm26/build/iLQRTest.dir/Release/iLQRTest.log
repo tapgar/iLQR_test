@@ -1,4 +1,4 @@
-﻿  DynamicModel.cpp
-  iLQR.cpp
-  Generating Code...
-  iLQRTest.vcxproj -> C:\OpenSim 3.3\sdk\APIExamples\iLQR_Arm26\build\Release\iLQRTest.exe
+﻿main.obj : error LNK2019: unresolved external symbol "public: __cdecl iLQR::iLQR(class OpenSim::Model *,class Eigen::Matrix<double,4,1,0,4,1>,double,int)" (??0iLQR@@QEAA@PEAVModel@OpenSim@@V?$Matrix@N$03$00$0A@$03$00@Eigen@@NH@Z) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: __cdecl iLQR::~iLQR(void)" (??1iLQR@@QEAA@XZ) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: void __cdecl iLQR::Run(void)" (?Run@iLQR@@QEAAXXZ) referenced in function main
+C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\Release\iLQRTest.exe : fatal error LNK1120: 3 unresolved externals

@@ -1,3 +1,3 @@
-C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/iLQRTest.dir
-C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/ALL_BUILD.dir
-C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/iLQRTest.dir
+C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/CMakeFiles/ZERO_CHECK.dir

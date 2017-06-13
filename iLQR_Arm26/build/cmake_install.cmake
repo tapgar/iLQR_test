@@ -1,4 +1,4 @@
-# Install script for directory: C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26
+# Install script for directory: C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/OpenSim 3.3/sdk/APIExamples/iLQR_Arm26/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/ravi-asus/Documents/GitHub/iLQR_test/iLQR_Arm26/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

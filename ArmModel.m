@@ -31,9 +31,9 @@ classdef ArmModel
             G = [(obj.m1*obj.lc1 + obj.m2*obj.l1)*obj.g*sin(q(1)) + obj.m2*obj.g*obj.l2*sin(q(1)+q(2));
                  obj.m2*obj.g*sin(q(1)+q(2))];
             
-            B = ones(2,1);
+            B = ones(2,2);
             
-            xdd = (B*u - C*qd - G)/H;
+            xdd = H\(B*u - C*qd - G);
         end
         
         function [A, B] = linearize(obj, x, u)
