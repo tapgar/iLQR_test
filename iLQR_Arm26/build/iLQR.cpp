@@ -19,8 +19,13 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 
 	target_x = targ_x;
 
-	for (int i = 0; i < 4; i++)
-		Qf(i, i) = 10.0;
+	Qf(0, 0) = 1.0;
+	Qf(1, 1) = 1.0;
+	Qf(2, 2) = 0.10;
+	Qf(3, 3) = 0.10;
+
+	//for (int i = 0; i < 2; i++)
+	//	Qf(i, i) = 0.0;
 
 	R = Matrix<double, 6, 6>::Zero();
 	for (int i = 0; i < 6; i++)
@@ -45,6 +50,9 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 
 	m_pDynamics = new DynamicModel(pModel);
 	m_nNumIters = 0;
+
+	m_dLastCost = 100000.0;
+	m_dLambda = 1.0;
 }
 
 
@@ -60,6 +68,9 @@ void iLQR::Run()
 	Traj_Pt null_pt;
 	for (int i = 0; i < m_nTrajPts; i++)
 	{
+		//for (int j = 0; j < 6; j++)
+		//	null_pt.u(j) = 1.0 - double(j) / 10.0;
+			
 		closed_traj.push_back(null_pt);
 		open_traj.push_back(null_pt);
 	}
@@ -93,7 +104,7 @@ void iLQR::Run()
 
 void iLQR::RunForward(vector<Traj_Pt>* closed_traj, vector<Traj_Pt>* open_traj)
 {
-	m_pController->SetDesiredTrajectory((*closed_traj));
+	m_pController->SetDesiredTrajectory((*open_traj));
 	RunModelOpenLoop(open_traj);
 	m_pController->SetDesiredTrajectory((*open_traj));
 	RunModel(closed_traj);
@@ -101,73 +112,141 @@ void iLQR::RunForward(vector<Traj_Pt>* closed_traj, vector<Traj_Pt>* open_traj)
 
 void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 {
-	int idx = m_nTrajPts - 1;
+	vector<Traj_Pt> prev_open_traj = open_traj;
+	vector<Traj_Pt> prev_closed_traj = closed_traj;
+	vector<MatrixXd> prev_K = m_K;
+	vector<VectorXd> prev_k = m_k;
 
-	vector<Matrix<double, 6, 1>> m_Qu;
-	vector<Matrix<double, 6, 6>> m_Quu;
-	vector<Matrix<double, 6, 4>> m_Qux;
-
-	Matrix<double, 6, 1> Qu = -R*(open_traj[idx].u - closed_traj[idx].u);
-	Matrix<double, 6, 6> Quu = R;
-	Vector4d Qx = Qf*(target_x - closed_traj[idx].x);
-	Matrix4d Qxx = Qf;
-	Matrix<double, 6, 4> Qux = Matrix<double, 6, 4>::Zero();
-
-	Vector4d Vx = Qx - m_K[idx].transpose()*Quu*m_k[idx];
-	Matrix4d Vxx = Qxx - m_K[idx].transpose()*Quu*m_K[idx];
-
-	m_Qu.push_back(Qu);
-	m_Quu.push_back(Quu);
-	m_Qux.push_back(Qux);
-
-	for (int i = idx - 1; i >= 0; i--)
+	bool bNotDecreasing = true;
+	while (bNotDecreasing)
 	{
-		Matrix<double, 6, 1> u_bar = -(open_traj[i].u - closed_traj[i].u);
-		double l = u_bar.transpose()*R*u_bar;
-		lu = 2 * u_bar;
-		luu = R;
-		//no state based cost besides Qf so lx, lxu, and lxx are zero
+		int idx = m_nTrajPts - 1;
 
-		//cout << lu << endl; cin.get();
-		//cout << luu << endl; cin.get();
+		vector<Matrix<double, 6, 1>> m_Qu;
+		vector<Matrix<double, 6, 6>> m_Quu;
+		vector<Matrix<double, 6, 4>> m_Qux;
 
-		Matrix4d A = Matrix4d::Zero();
-		Matrix<double, 4, 6> B = Matrix<double, 4, 6>::Zero();
+		Matrix<double, 6, 1> Qu = R*closed_traj[idx].u;
+		Matrix<double, 6, 6> Quu = R;
+		Vector4d Qx = 2.0*Qf*(closed_traj[idx].x - target_x);
+		Matrix4d Qxx = Qf;
+		Matrix<double, 6, 4> Qux = Matrix<double, 6, 4>::Zero();
 
-		m_pDynamics->GetGradient(closed_traj[i], double(i)*m_dMaxSimTime_s / double(m_nTrajPts), &A, &B);
-
-		Qx = lx + A.transpose()*Vx;
-		Qu = lu + B.transpose()*Vx;
-		Qxx = lxx + A.transpose()*Vxx*A;
-		Qux = lux + B.transpose()*Vxx*A;
-		Quu = luu + B.transpose()*Vxx*B;
-
-		Vx = Qx - m_K[idx].transpose()*Quu*m_k[idx];
-		Vxx = Qxx - m_K[idx].transpose()*Quu*m_K[idx];
+		Vector4d Vx = Qx;// Qx - m_K[idx].transpose()*Quu*m_k[idx];
+		Matrix4d Vxx = Qxx;// Qxx - m_K[idx].transpose()*Quu*m_K[idx];
 
 		m_Qu.push_back(Qu);
 		m_Quu.push_back(Quu);
 		m_Qux.push_back(Qux);
+
+
+		for (int i = idx - 1; i >= 0; i--)
+		{
+			Matrix<double, 6, 1> u_bar = closed_traj[i].u;// -(open_traj[i].u - closed_traj[i].u);
+			lu = 2 * u_bar;
+			luu = R;
+			//no state based cost besides Qf so lx, lxu, and lxx are zero
+
+			//cout << lu << endl; cin.get();
+			//cout << luu << endl; cin.get();
+
+			Matrix4d A = Matrix4d::Zero();
+			Matrix<double, 4, 6> B = Matrix<double, 4, 6>::Zero();
+
+			m_pDynamics->GetGradient(closed_traj[i], double(i)*m_dMaxSimTime_s / double(m_nTrajPts), &A, &B);
+
+			Qx = lx + A.transpose()*Vx;
+			Qu = lu + B.transpose()*Vx;
+			Qxx = lxx + A.transpose()*Vxx*A;
+			Qux = lux + B.transpose()*Vxx*A;
+			Quu = luu + B.transpose()*Vxx*B;
+
+			//m_K[idx] = -Quu.inverse()*Qux;
+			//m_k[idx] = -Quu.inverse()*Qu;
+
+			Vx = Qx - m_K[idx].transpose()*Quu*m_k[idx];
+			Vxx = Qxx - m_K[idx].transpose()*Quu*m_K[idx];
+
+			m_Qu.push_back(Qu);
+			m_Quu.push_back(Quu);
+			m_Qux.push_back(Qux);
+		}
+
+
+
+		for (int i = 0; i < m_nTrajPts; i++)
+		{
+			//these were pushed into the vector backwards
+			Quu = m_Quu[m_nTrajPts - 1 - i];
+			Qu = m_Qu[m_nTrajPts - 1 - i];
+			Qux = m_Qux[m_nTrajPts - 1 - i];
+
+			JacobiSVD<MatrixXd> svd(Quu, ComputeThinU | ComputeThinV);
+			MatrixXd S = svd.singularValues();
+			Matrix<double, 6, 6> S_diag = Matrix<double, 6, 6>::Zero();
+			for (int i = 0; i < S.size(); i++)
+			{
+				if (S(i, 0) < 0.0)
+					S(i, 0) = 0.0;
+				S(i, 0) += m_dLambda;
+				S_diag(i, i) = 1.0 / S(i, 0);
+			}
+
+			/*cout << S_diag << endl;
+			cout << endl;
+			cout << svd.matrixU();
+			cout << endl;
+			cout << svd.matrixV();
+			cin.get();*/
+			Matrix<double, 6, 6> Quu_inv = svd.matrixU()*S_diag*svd.matrixV().transpose();
+
+			//cout << "Gains: " << i << endl;
+
+			m_K[i] = -Quu_inv*Qux;
+			//cout << m_K[i] << endl;
+			m_k[i] = -Quu_inv*Qu;
+			//cout << m_k[i] << endl;
+		}
+		
+		m_pController->SetControllerGains(m_K, m_k);
+
+		//evaluate new trajectory costs
+		RunForward(&closed_traj, &open_traj);
+		double total_cost = (target_x - closed_traj[m_nTrajPts-1].x).transpose()*Qf*(target_x - closed_traj[m_nTrajPts - 1].x);
+		for (int i = 0; i < m_nTrajPts; i++)
+			total_cost += closed_traj[i].u.transpose()*R*closed_traj[i].u;
+
+		cout << "Cost: " << total_cost << "\tLambda: " << m_dLambda << endl;
+
+		if (total_cost < m_dLastCost)
+		{
+			m_dLambda /= 1.1;
+			bNotDecreasing = false;
+			m_dLastCost = total_cost;
+		}
+		else
+		{
+			m_dLambda *= 1.1;
+			closed_traj = prev_closed_traj;
+			open_traj = prev_open_traj;
+			m_K = prev_K;
+			m_k = prev_k;
+			m_pController->SetControllerGains(m_K, m_k);
+
+			double cost_check = (target_x - closed_traj[m_nTrajPts - 1].x).transpose()*Qf*(target_x - closed_traj[m_nTrajPts - 1].x);
+			for (int i = 0; i < m_nTrajPts; i++)
+				cost_check += closed_traj[i].u.transpose()*R*closed_traj[i].u;
+
+
+			RunForward(&closed_traj, &open_traj);
+
+			total_cost = (target_x - closed_traj[m_nTrajPts - 1].x).transpose()*Qf*(target_x - closed_traj[m_nTrajPts - 1].x);
+			for (int i = 0; i < m_nTrajPts; i++)
+				total_cost += closed_traj[i].u.transpose()*R*closed_traj[i].u;
+
+			cout << "Reseting controller and trajectory | cost after reset: " << total_cost << " wtf is going on: " << cost_check << endl;
+		}
 	}
-
-	for (int i = 0; i < m_nTrajPts; i++)
-	{
-		//these were pushed into the vector backwards
-		Quu = m_Quu[m_nTrajPts - 1 - i];
-		Qu = m_Qu[m_nTrajPts - 1 - i];
-		Qux = m_Qux[m_nTrajPts - 1 - i];
-
-		//cout << "Gains: " << i << endl;
-
-		m_K[i] = -Quu.inverse()*Qux;
-		cout << m_K[i] << endl;
-		m_k[i] = -Quu.inverse()*Qu;
-		cout << m_k[i] << endl;
-	}
-
-	//cin.get();
-
-	m_pController->SetControllerGains(m_K, m_k);
 }
 
 void iLQR::ResetModel()
@@ -210,7 +289,7 @@ void iLQR::RunModel(vector<Traj_Pt>* trajectory)
 													   // Set the initial muscle activations 
 	const Set<Muscle> &muscleSet = m_pModel->getMuscles();
 	for (int i = 0; i< muscleSet.getSize(); i++) {
-		muscleSet[i].setActivation(si, 0.01);
+		muscleSet[i].setActivation(si, (*trajectory)[0].u(i));
 	}
 
 	// Make sure the muscles states are in equilibrium
@@ -261,7 +340,7 @@ void iLQR::RunModelOpenLoop(vector<Traj_Pt>* trajectory)
 													   // Set the initial muscle activations 
 	const Set<Muscle> &muscleSet = m_pModel->getMuscles();
 	for (int i = 0; i< muscleSet.getSize(); i++) {
-		muscleSet[i].setActivation(si, 0.01);
+		muscleSet[i].setActivation(si, (*trajectory)[0].u(i));
 	}
 
 	// Make sure the muscles states are in equilibrium

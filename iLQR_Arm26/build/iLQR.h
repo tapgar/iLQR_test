@@ -55,5 +55,8 @@ private:
 
 	int m_nNumIters;
 
+	double m_dLastCost;
+	double m_dLambda;
+
 };
 

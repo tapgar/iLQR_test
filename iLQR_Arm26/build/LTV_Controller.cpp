@@ -21,7 +21,6 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 
 	Traj_Pt targ_pt = m_Trajectory[nT];
 
-
 	//m_pModel->setStateValues(s);
 
 	// initialize the starting shoulder angle
@@ -39,5 +38,10 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 		u += K*(targ_pt.x - curX);
 
 	for (int i = 0; i < 6; i++)
-		controls.set(i, u(i));
+	{
+		Muscle* tempMuscle = dynamic_cast<Muscle*>	(&getActuatorSet().get(i));
+		SimTK::Vector muscleControl(1, u(i));
+		// Add in the controls computed for this muscle to the set of all model controls
+		tempMuscle->addInControls(muscleControl, controls);
+	}
 }
