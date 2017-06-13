@@ -1,4 +1,9 @@
 a=ArmModel;
 uArrayInitial=zeros(2,100);
-xf=[pi/2;pi/2];
-x0=[0;0];
+params = zeros(1,400);
+p_init 
+xf=[pi/2;pi/2;0;0];
+x0=[0;0;0;0];
+dt=0.01;
+options = optimoptions('fmincon','MaxFunctionEvaluations',30000);
+uArray=fmincon(@(params)fun(params,a,x0,xf,dt),p_init,[],[],[],[],[],[],@(params)nonlcon(params,a,x0,xf,dt),options);

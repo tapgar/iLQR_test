@@ -13,13 +13,15 @@ classdef ArmModel
         l2 = 0.36;
         g = 9.806;
         dt = 0.01;
+        vert;
     end
     
     methods
         
-        function obj = ArmModel()
+        function obj = ArmModel(vertical)
             obj.I1 = obj.I1 + obj.m1*obj.lc1^2;
             obj.I2 = obj.I2 + obj.m2*obj.lc2^2;
+            obj.vert = vertical;
         end
         
         function xdd = forward(obj, x, u)
@@ -39,6 +41,9 @@ classdef ArmModel
             
             B = eye(2);
             
+            if (~obj.vertical)
+                G = G.*0.0;
+            end
             xdd = inv(H)*(B*u - C*qd - G);
             
 %             xdd = zeros(2,1);
@@ -115,9 +120,39 @@ classdef ArmModel
                 xlim([-1 1])
                 ylim([-1 1])
                 hold off
-                pause(0.001);
+                pause(0.01);
                 
             end
+            
+        end
+        
+        function xy_path = get_cartesian(obj, x_traj)
+           
+            xy_path = x_traj;
+            for i = 1:1:length(x_traj)
+               
+                x = x_traj(i,:)';
+                p2 = [obj.l1*sin(x(1)); -obj.l1*cos(x(1))];
+                p3 = [p2(1) + obj.l2*sin(x(1)+x(2)); p2(2) - obj.l2*cos(x(1)+x(2))];
+                
+                p2dot = [x(3)*obj.l1*cos(x(1)); x(3)*obj.l1*sin(x(1))];
+                p3dot = [p2dot(1) + x(4)*obj.l2*cos(x(1)+x(2)); p2dot(2) + x(4)*obj.l2*sin(x(1)+x(2))];
+                
+                xy_path(i,:) = [p3', p3dot'];
+            end
+        end
+        
+        function jerk_ssq = get_ef_jerk(obj, x)
+           
+            t1 = x(1:50);
+            t2 = x(51:100);
+            x_pos = obj.l1*sin(t1) + obj.l2*sin(t1+t2);
+            y_pos = -obj.l1*cos(t1)- obj.l2*cos(t1+t2);
+            
+            v = sqrt(diff(x_pos).^2 + diff(y_pos).^2);
+            jerk_ssq = sum((diff(diff(v)./.01)./.01).^2);
+            
+            
             
         end
     end
