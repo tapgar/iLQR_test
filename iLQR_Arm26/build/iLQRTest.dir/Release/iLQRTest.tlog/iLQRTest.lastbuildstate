@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
-Release|x64|C:\Users\tapgar\Documents\GitHub\iLQG\iLQR_test\iLQR_Arm26\build\|
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.14393.0
+Release|x64|C:\Users\ravi-asus\Documents\GitHub\iLQR_test\iLQR_Arm26\build\|

@@ -5,8 +5,8 @@ classdef iLQR
     properties
         m_K
         m_k
-        Qf = 100.*diag([1.0, 1.0, 0.1, 0.1]);
-        R = diag([0.1, 0.1]);
+        Qf = 10.*diag([10.0, 10.0, 2.0, 2.0]);
+        R = diag([0.01, 0.01]);
         arm
         iters
         x_targ
@@ -35,8 +35,8 @@ classdef iLQR
                
                 [x_traj, u_traj, x_open, u_open] = obj.RunForward(x0);
                 obj = obj.RunBackward(x0, x_traj, u_traj, x_open, u_open);
-                obj.arm.playback(x_traj);
-                pause(0.01)
+%                 obj.arm.playback(x_traj);
+%                 pause(0.01)
             end
             
         end
@@ -94,8 +94,15 @@ classdef iLQR
                     Qux = lux + B'*Vxx*A;
                     Quu = luu + B'*Vxx*B;
                     
-%                     obj.m_K{i} = -inv(Quu)*Qux;
-%                     obj.m_k{i} = -inv(Quu)*Qu;
+                    [U, S, V] = svd(Quu);
+                    S(S < 0) = 0.0;
+                    S = S + eye(2).*obj.lambda;
+                    Sd = inv(diag([S(1,1), S(2,2)]));
+                    
+                    Quu_inv = U*Sd*V';
+                    
+                    obj.m_K{i} = -Quu_inv*Qux;
+                    obj.m_k{i} = obj.m_k{i} -Quu_inv*Qu;
                     
                     Vx = Qx - obj.m_K{i}'*Quu*obj.m_k{i};
                     Vxx = Qxx - obj.m_K{i}'*Quu*obj.m_K{i};
@@ -105,25 +112,7 @@ classdef iLQR
                     q_hist{i}.Quu = Quu;
                 end
                 
-                for i = 1:1:obj.iters
-                   
-                    Qu = q_hist{i}.Qu;
-                    Qux = q_hist{i}.Qux;
-                    Quu = q_hist{i}.Quu;
-                    
-                    [U, S, V] = svd(Quu);
-                    S(S < 0) = 0.0;
-                    S = S + eye(2).*obj.lambda;
-                    Sd = inv(S);
-                    
-                    Quu_inv = U*Sd*V';
-                    
-                    obj.m_K{i} = -Quu_inv*Qux;
-                    obj.m_k{i} = -Quu_inv*Qu;
-                    
-                end
-                
-                [x_check, u_check] = obj.arm.run_forward(x0, x_open, u_open, obj.m_K, obj.m_k, true);
+                [x_check, u_check] = obj.arm.run_forward(x0, x_open, u_open, obj.m_K, obj.m_k, false);
                 
                 cost = obj.CalculateTrajCost(x_check, u_check);
                 

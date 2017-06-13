@@ -2,6 +2,7 @@
 #include <ctime>  // clock(), clock_t, CLOCKS_PER_SEC
 #include "iLQR.h"
 #include "Common_Structs.h"
+#include <Eigen/dense>
 
 using namespace Eigen;
 using namespace OpenSim;
