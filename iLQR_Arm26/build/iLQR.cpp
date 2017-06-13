@@ -24,12 +24,12 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 	Qf(2, 2) = 0.10;
 	Qf(3, 3) = 0.10;
 
-	//for (int i = 0; i < 2; i++)
-	//	Qf(i, i) = 0.0;
+	for (int i = 0; i < 4; i++)
+		Qf(i, i) *= 10000.0;
 
 	R = Matrix<double, 6, 6>::Zero();
 	for (int i = 0; i < 6; i++)
-		R(i, i) = 0.20;
+		R(i, i) = 0.020;
 
 	lx = Vector4d::Zero();
 	lu = VectorXd::Zero(6);
@@ -51,7 +51,7 @@ iLQR::iLQR(Model* pModel, Vector4d targ_x, double sim_time, int time_steps)
 	m_pDynamics = new DynamicModel(pModel);
 	m_nNumIters = 0;
 
-	m_dLastCost = 100000.0;
+	m_dLastCost = 100000000.0;
 	m_dLambda = 1.0;
 }
 
@@ -96,7 +96,7 @@ void iLQR::Run()
 		*/
 		RunBackward(closed_traj, open_traj);
 
-		if (m_nNumIters++ > 99)
+		if (m_nNumIters++ > 99 || m_dLambda > 10000.0)
 			bConverged = true;
 
 	}
@@ -129,7 +129,7 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 		Matrix<double, 6, 1> Qu = R*closed_traj[idx].u;
 		Matrix<double, 6, 6> Quu = R;
 		Vector4d Qx = 2.0*Qf*(closed_traj[idx].x - target_x);
-		Matrix4d Qxx = Qf;
+		Matrix4d Qxx = 2.0*Qf;
 		Matrix<double, 6, 4> Qux = Matrix<double, 6, 4>::Zero();
 
 		Vector4d Vx = Qx;// Qx - m_K[idx].transpose()*Quu*m_k[idx];
@@ -143,8 +143,11 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 		for (int i = idx - 1; i >= 0; i--)
 		{
 			Matrix<double, 6, 1> u_bar = closed_traj[i].u;// -(open_traj[i].u - closed_traj[i].u);
-			lu = 2 * u_bar;
-			luu = R;
+			for (int j = 0; j < 6; j++)
+				if (u_bar(j) < 0.0)
+					u_bar(j) = 0.01;
+			lu = 2 * R * u_bar;
+			luu = 2 * R;
 			//no state based cost besides Qf so lx, lxu, and lxx are zero
 
 			//cout << lu << endl; cin.get();
@@ -154,6 +157,8 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 			Matrix<double, 4, 6> B = Matrix<double, 4, 6>::Zero();
 
 			m_pDynamics->GetGradient(closed_traj[i], double(i)*m_dMaxSimTime_s / double(m_nTrajPts), &A, &B);
+			A = A*m_dMaxSimTime_s / double(m_nTrajPts);
+			B = B*m_dMaxSimTime_s / double(m_nTrajPts);
 
 			Qx = lx + A.transpose()*Vx;
 			Qu = lu + B.transpose()*Vx;
@@ -213,11 +218,17 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 		//evaluate new trajectory costs
 		RunForward(&closed_traj, &open_traj);
 		double total_cost = (target_x - closed_traj[m_nTrajPts-1].x).transpose()*Qf*(target_x - closed_traj[m_nTrajPts - 1].x);
+		//cout << "End Pos: " << closed_traj[m_nTrajPts - 1].x << endl;
+		//cout << "Target Pos: " << target_x << endl;
+		//cout << "State Cost: " << total_cost << endl;
 		for (int i = 0; i < m_nTrajPts; i++)
+		{
 			total_cost += closed_traj[i].u.transpose()*R*closed_traj[i].u;
-
+		//	cout << "U: " << closed_traj[i].u << endl;
+		//	cout << total_cost << endl;
+		}
 		cout << "Cost: " << total_cost << "\tLambda: " << m_dLambda << endl;
-
+		//cin.get();
 		if (total_cost < m_dLastCost)
 		{
 			m_dLambda /= 1.1;
@@ -238,7 +249,7 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 				cost_check += closed_traj[i].u.transpose()*R*closed_traj[i].u;
 
 
-			RunForward(&closed_traj, &open_traj);
+			//RunForward(&closed_traj, &open_traj);
 
 			total_cost = (target_x - closed_traj[m_nTrajPts - 1].x).transpose()*Qf*(target_x - closed_traj[m_nTrajPts - 1].x);
 			for (int i = 0; i < m_nTrajPts; i++)
@@ -246,6 +257,8 @@ void iLQR::RunBackward(vector<Traj_Pt> closed_traj, vector<Traj_Pt> open_traj)
 
 			cout << "Reseting controller and trajectory | cost after reset: " << total_cost << " wtf is going on: " << cost_check << endl;
 		}
+		if (m_dLambda > 10000.0)
+			break;
 	}
 }
 

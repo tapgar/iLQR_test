@@ -39,6 +39,8 @@ void LTV_Controller::computeControls(const SimTK::State& s, SimTK::Vector &contr
 
 	for (int i = 0; i < 6; i++)
 	{
+		//if (u(i) < 0.0)
+		//	cout << "yep you fucked...\n";
 		Muscle* tempMuscle = dynamic_cast<Muscle*>	(&getActuatorSet().get(i));
 		SimTK::Vector muscleControl(1, u(i));
 		// Add in the controls computed for this muscle to the set of all model controls
